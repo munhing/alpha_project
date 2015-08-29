@@ -126,32 +126,19 @@ class LocationsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-        dd();
-		try
-		{
-			$r = Report::with('certificates')->findOrFail($id);
-			//var_dump($r->toArray());
-			$r->delete();
+		$location = $this->locationsRepository->getById($id);
 
-			foreach($r->certificates as $cert) {
-				$c = Certificate::findOrFail($cert->id);
-				$c->report_id = 0;
-				$c->save();
-				//var_dump($c->toArray());
-			}
+		if($location->reports->count() > 0 || $location->certificates->count() > 0 || $location->items->count() > 0) {
 
-			//die();
-
-			Flash::success("Report No: $r->report_no has been Deleted!");
-			return Redirect::route('reports');
-			//return Redirect::route('clients')->with("message", "Client, $client->name, has been added successfully!");
-			//return 'Success!';
-		}
-		catch (Exception $e)
-		{
-			Flash::error("Unable to delete Report No: $r->report_no.");
+			Flash::error("Location $location->location is still active and cannot be deleted!");
 			return Redirect::back();
+
 		}
+
+		$this->locationsRepository->destroy($location);
+
+		Flash::success("Location $location->location has been Deleted!");
+		return Redirect::route('locations');
 	}
 
 }
