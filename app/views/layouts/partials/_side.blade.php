@@ -33,7 +33,10 @@
                         </li>                         
                         <li class="{{ Request::is('admin/itemtypes*') ? 'active' : '' }}">
                             <a href="{{ URL::route('items.type') }}"><i class="fa fa-edit fa-fw"></i> Item Type<span class="fa arrow"></span></a>
-                        </li>                                                                                                                      
+                        </li>    
+                        <li class="{{ Request::is('admin/locations*') ? 'active' : '' }}">
+                            <a href="{{ URL::route('locations') }}"><i class="fa fa-edit fa-fw"></i> Location<span class="fa arrow"></span></a>
+                        </li> 						
                     </ul>
                 </section>
                 <!-- /.sidebar -->

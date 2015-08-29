@@ -41,6 +41,7 @@
                                 <li><a href="{{ URL::route('reports.type.create') }}">Report Type</a></li>
                                 <li><a href="{{ URL::route('certificates.type.create') }}">Certificate Type</a></li>
                                 <li><a href="{{ URL::route('items.type.create') }}">Item Type</a></li>
+                                <li><a href="{{ URL::route('locations.create') }}">Location</a></li>
                             </ul>
                         </li>
 

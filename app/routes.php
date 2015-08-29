@@ -555,6 +555,41 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth | client'), function()
 
 	/*
 	|--------------------------------------------------------------------------
+	| Location
+	|--------------------------------------------------------------------------
+	*/
+	Route::get('/locations', [
+		'as' => 'locations', 
+		'uses' => 'LocationsController@index'
+	]);
+
+	Route::get('/locations/create', [
+		'as' => 'locations.create', 
+		'uses' => 'LocationsController@create'
+	]);
+
+    Route::post('/locations/create', [
+		'as' => 'locations.create', 
+		'uses' => 'LocationsController@store'
+	]);
+
+    Route::get('/locations/{id}/edit', [
+		'as' => 'locations.edit', 
+		'uses' => 'LocationsController@edit'
+	]);
+
+    Route::put('/locations', [
+		'as' => 'locations.update', 
+		'uses' => 'LocationsController@update'
+	]);
+    
+	Route::post('/locations/{id}/delete', [
+		'as' => 'locations.delete',
+		'uses' => 'LocationsController@destroy'
+	]);	
+	
+	/*
+	|--------------------------------------------------------------------------
 	| Users
 	|--------------------------------------------------------------------------
 	*/
