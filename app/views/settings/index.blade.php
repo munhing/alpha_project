@@ -1,0 +1,90 @@
+@extends('layouts/default')
+
+@section('content')
+
+    <section class="content-header" style="padding-bottom:20px;">
+    	<h1>Settings <small>Information</small></h1>
+    </section>
+
+    <section class="content">
+
+	    <div class="row">
+	        <div class="col-lg-6">    
+	            <div class="box box-solid box-primary">
+	                <div class="box-header">
+	                    <i class="fa fa-info-circle fa-fw"></i> <h3 class="box-title">Report</h3>
+	                </div>
+	                <!-- /.panel-heading -->
+	                <div class="box-body">
+
+				   		<div class="form-horizontal">
+
+							<div class="form-group">
+								{{ Form::label('new_report_days', 'Number of Days consider as New:', ['class' =>'col-sm-6 control-label']) }}
+
+								<div class="col-sm-6">
+									<div class="input-group">
+									{{ Form::text('new_report_days', '7', ['class' =>'form-control', 'placeholder' => '# of days']) }}
+									<span class="input-group-addon">day(s)</span>
+									</div>
+									
+								</div>			
+							</div>
+
+							<div class="form-group">
+								{{ Form::label('exp_report_days', 'Number of Days before Expires:', ['class' =>'col-sm-6 control-label']) }}
+
+								<div class="col-sm-6">
+									<div class="input-group">
+									{{ Form::text('exp_report_days', '60', ['class' =>'form-control', 'placeholder' => '# of days']) }}
+									<span class="input-group-addon">day(s)</span>
+									</div>
+									
+								</div>			
+							</div>							
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6">    
+	            <div class="box box-solid box-primary">
+	                <div class="box-header">
+	                    <i class="fa fa-info-circle fa-fw"></i> <h3 class="box-title">Certificates</h3>
+	                </div>
+	                <!-- /.panel-heading -->
+	                <div class="box-body">
+
+				   		<div class="form-horizontal">
+
+							<div class="form-group">
+								{{ Form::label('new_cert_days', 'Number of Days consider as New:', ['class' =>'col-sm-6 control-label']) }}
+
+								<div class="col-sm-6">
+									<div class="input-group">
+									{{ Form::text('new_cert_days', '7', ['class' =>'form-control', 'placeholder' => '# of days']) }}
+									<span class="input-group-addon">day(s)</span>
+									</div>
+									
+								</div>			
+							</div>
+
+							<div class="form-group">
+								{{ Form::label('exp_cert_days', 'Number of Days before Expires:', ['class' =>'col-sm-6 control-label']) }}
+
+								<div class="col-sm-6">
+									<div class="input-group">
+									{{ Form::text('exp_cert_days', '60', ['class' =>'form-control', 'placeholder' => '# of days']) }}
+									<span class="input-group-addon">day(s)</span>
+									</div>
+									
+								</div>			
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+@stop
