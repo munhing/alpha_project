@@ -18,8 +18,13 @@
             <li>
                 <a href="{{ route('home') }}"><i class='fa fa-home fa-fw'></i>Home</a>
             </li>
-            <li>{{ link_to_route('locations', 'Location') }}</li>
-             <li class="active">Edit</li>       
+            <li>
+                <a href="{{ route('locations') }}"></i>Locations</a>
+            </li>            
+            <li>
+                <a href="{{ route('locations.show', $location->id) }}"></i>{{$location->location}}</a>
+            </li>             
+            <li class="active">Edit</li>       
         </ol>     	
     </section>
 

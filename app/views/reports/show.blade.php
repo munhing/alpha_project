@@ -47,6 +47,8 @@
                 <div class="box-body">
 
                     <dl class="dl-horizontal">
+                        <dt>Client:</dt>
+                        <dd><a href="{{ URL::route('clients.show' , $report->client_id) }}">{{ $report->client->name }}</a></dd>
                         <dt>Report Type:</dt>
                         <dd>{{ $report->type }}</dd>
                         <dt>Report Date:</dt>
@@ -70,7 +72,13 @@
                             @else
                                 <small class="label label-success"><i class="fa fa-clock-o"></i> Expiring {{ $report->next_inspection->diffForHumans() }}</small>
                             @endif                         
-                        </dd>                                                   
+                        </dd>
+                        <dt>Location:</dt>
+                        <dd>
+                            @if($report->location_id != 0)
+                                <a href="{{ route('locations') }}">{{ $report->location->location }}</a>
+                            @endif
+                        </dd>
                     </dl>                     	
                 </div>
             </div>

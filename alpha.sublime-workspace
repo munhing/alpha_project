@@ -161,9 +161,14 @@
 	[
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -187,9 +192,6 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/apps/alpha",
-		"/C/wamp/apps/alpha/bootstrap",
-		"/C/wamp/apps/alpha/public"
 	],
 	"file_history":
 	[
@@ -461,6 +463,7 @@
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "",
 	"project": "alpha.sublime-project",
 	"replace":
 	{
@@ -470,6 +473,7 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -478,6 +482,7 @@
 	"select_project":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -486,6 +491,7 @@
 	"select_symbol":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],

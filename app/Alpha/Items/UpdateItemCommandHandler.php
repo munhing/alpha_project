@@ -30,6 +30,7 @@ class UpdateItemCommandHandler implements CommandHandler {
 			$command->serial_no,
 			$command->item_type_id,
 			$command->client_id,
+			$command->location_id,
 			$command->description
 		);
 

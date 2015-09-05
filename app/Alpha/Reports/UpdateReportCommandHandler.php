@@ -35,6 +35,7 @@ class UpdateReportCommandHandler implements CommandHandler {
 			$command->report_no,
 			$command->type,
 			$command->client_id,
+			$command->location_id,
 			$command->validity,
 			$command->date,
 			$command->next_inspection,

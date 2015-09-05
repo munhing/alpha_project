@@ -30,6 +30,15 @@ class CertificatesRepository
 		       ->paginate($row);
 	}
 
+	public function getAllByLocationWithPagination($location_id, $row = 20)
+	{
+		return Certificate::with('reports', 'items', 'client', 'certificateType')->selectRaw("certificates.*, (certificates.next_inspection) > (NOW())  AS `status`")
+		       ->join('clients', 'certificates.client_id', '=', 'clients.id')
+		       ->where('location_id', $location_id)
+		       ->orderBy('certificates.cert_no')
+		       ->paginate($row);
+	}
+
 	public function getById($id)	
 	{
 		return Certificate::find($id);

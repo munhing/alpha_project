@@ -42,11 +42,19 @@
                     <!-- /.panel-heading -->
                     <div class="box-body">
 
-                        <dl class="dl-horizontal">                   
+                        <dl class="dl-horizontal">  
+                            <dt>Client:</dt>
+                            <dd><a href="{{ URL::route('clients.show' , $item->client_id) }}">{{ $item->client->name }}</a></dd>                 
                             <dt>Type:</dt>
                             <dd>{{ $item->itemType->type }}</dd>
                             <dt>Description:</dt>
-                            <dd>{{ $item->description }}</dd>                          
+                            <dd>{{ $item->description }}</dd>   
+                            <dt>Location:</dt>
+                            <dd>
+                                @if($item->location_id != 0)
+                                    <a href="{{ route('locations') }}">{{ $item->location->location }}</a>
+                                @endif
+                            </dd>                                                     
                         </dl>                     	
                     </div>
                 </div>

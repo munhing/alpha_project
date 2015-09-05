@@ -39,7 +39,28 @@
                             <!--  link_to_route({name of the route}, {link name}, {value to pass to the route})  -->
                             <tr>
                                 <!-- <td> link_to_route('client_show', $client->name, $client->id) </a></td> -->
-                                <td>{{ $location->location }}</td>
+                                <td>
+                                    <a href="{{ URL::route('locations.show', $location->id)}}">{{ $location->location }}</a>
+                                    <span class="pull-right">
+                                        @if($location->reports()->count() > 0)
+                                            <a href="{{ URL::route('locations.reports.list', $location->id)}}"> 
+                                                <small class="badge bg-yellow">{{ $location->reports()->count() . " reports"}} </small>
+                                            </a>
+                                        @endif  
+
+                                        @if($location->certificates()->count() > 0)
+                                            <a href="{{ URL::route('locations.certificates.list', $location->id)}}"> 
+                                                <small class="badge bg-teal">{{ $location->certificates()->count() . " certs"}} </small>
+                                            </a>
+                                        @endif     
+
+                                        @if($location->items()->count() > 0)
+                                            <a href="{{ URL::route('locations.items.list', $location->id)}}"> 
+                                                <small class="badge bg-olive">{{ $location->items()->count() . " items"}} </small>
+                                            </a>
+                                        @endif
+                                    </span>                                    
+                                </td>
                                 <td>{{ $location->client->name }}</td>
                                 <td>
                                     <a href="{{ URL::route('locations.edit' , $location->id) }}" class="btn btn-xs btn-warning">

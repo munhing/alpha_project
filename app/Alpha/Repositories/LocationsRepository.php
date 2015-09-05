@@ -15,9 +15,14 @@ class LocationsRepository
 		return Location::orderBy('location')->get();
 	}
 
+	public function getAllByClient($client_id)
+	{
+		return Location::where('client_id', $client_id)->orderBy('location')->get();
+	}
+
 	public function getById($id)
 	{
-		return Location::with('client')->find($id);
+		return Location::with('client', 'reports', 'certificates', 'items')->find($id);
 	}
 
 	public function save(Location $location)
@@ -34,4 +39,11 @@ class LocationsRepository
 	{
 		return Location::selectRaw("id, location AS text")->where('client_id', $client_id)->orderBy('text')->get();
 	}
+
+	public function getAllForClient($clientList)
+	{
+		return Location::whereIn('client_id', $clientList)
+						->orderBy('location')
+						->get();
+	}	
 }

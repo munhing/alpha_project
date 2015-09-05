@@ -43,7 +43,9 @@
                 <!-- /.panel-heading -->
                 <div class="box-body">
 
-                    <dl class="dl-horizontal"> 
+                    <dl class="dl-horizontal">
+                        <dt>Client:</dt>
+                        <dd><a href="{{ URL::route('clients.show' , $certificate->client_id) }}">{{ $certificate->client->name }}</a></dd>
                         <dt>Certificate Type:</dt>
                         <dd>
                             @if($certificate->certificate_type_id == 0)
@@ -74,7 +76,13 @@
                             @else
                                 <small class="label label-success"><i class="fa fa-clock-o"></i> Expiring {{ $certificate->next_inspection->diffForHumans() }}</small>
                             @endif                                                  
-                        </dd>                                                 
+                        </dd>  
+                        <dt>Location:</dt>
+                        <dd>
+                            @if($certificate->location_id != 0)
+                                <a href="{{ route('locations') }}">{{ $certificate->location->location }}</a>
+                            @endif
+                        </dd>                                                                       
                     </dl>                       
                 </div>
             </div>

@@ -40,7 +40,6 @@ class CertificatesTableSeeder extends Seeder {
 		  Certificate::create(array(
 		    'cert_no' => strtoupper($faker->unique()->bothify('TUV/?/??/##/0#####')),
 		    'client_id' => $report->client->id,
-		    'report_id' => $reportId,
 		    'date' => $last_inspection,
 		    'next_inspection' => $next_inspection->addYears($year[$validity])->subDay(),
 		    'validity' => $validity
@@ -50,7 +49,6 @@ class CertificatesTableSeeder extends Seeder {
 		  Certificate::create(array(
 			'cert_no' => 'TUV/L/PR/14/080364',
 			'client_id' => 51,
-			'report_id' => 501,
 			'date' => '2014-08-11',
 			'next_inspection' => '2015-08-10',
 			'validity' => 12,
@@ -60,7 +58,6 @@ class CertificatesTableSeeder extends Seeder {
 		  Certificate::create(array(
 			'cert_no' => 'TUV/L/PR/14/080365',
 			'client_id' => 51,
-			'report_id' => 502,
 			'date' => '2014-08-11',
 			'next_inspection' => '2015-08-10',
 			'validity' => 12,
@@ -70,7 +67,6 @@ class CertificatesTableSeeder extends Seeder {
 		  Certificate::create(array(
 			'cert_no' => 'TUV/L/PR/14/080709',
 			'client_id' => 51,
-			'report_id' => 503,
 			'date' => '2014-08-15',
 			'next_inspection' => '2015-08-14',
 			'validity' => 12,
@@ -80,7 +76,6 @@ class CertificatesTableSeeder extends Seeder {
 		  Certificate::create(array(
 			'cert_no' => 'TUV/L/PR/14/080726',
 			'client_id' => 51,
-			'report_id' => 504,
 			'date' => '2014-08-15',
 			'next_inspection' => '2015-08-14',
 			'validity' => 12,

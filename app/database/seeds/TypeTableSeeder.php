@@ -7,19 +7,19 @@ class TypeTableSeeder extends Seeder {
 
 		//DB::table('type')->truncate();
 
-		Type::create(array(
+		ReportType::create(array(
 			'type' => 'MPI'
 		));
 
-		Type::create(array(
+		ReportType::create(array(
 			'type' => 'DPI'
 		));
 
-		Type::create(array(
+		ReportType::create(array(
 			'type' => 'TG'
 		));
 
-		Type::create(array(
+		ReportType::create(array(
 			'type' => 'Hydro'
 		));						
 	}

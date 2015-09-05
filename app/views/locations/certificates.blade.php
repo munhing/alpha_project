@@ -8,7 +8,7 @@
 @section('content')
 
     <section class="content-header">
-        <h1>All Certificates<small>List</small>
+        <h1>All Certificates for {{$location->location}}<small>List</small>
             <a href="{{ URL::route('certificates.create') }}" class="btn btn-sm pull-right btn-default">
                 <i class='fa fa-plus fa-fw'></i> New Certificate
             </a>
@@ -16,6 +16,12 @@
         <ol class="breadcrumb">
             <li>
                 <a href="{{ route('home') }}"><i class='fa fa-home fa-fw'></i>Home</a>
+            </li>
+            <li>
+                <a href="{{ route('locations') }}"></i>Locations</a>
+            </li>             
+            <li>
+                <a href="{{ route('locations.show', $location->id) }}">{{$location->location}}</a>
             </li>
              <li class="active">Certificates</li>       
         </ol>        
@@ -69,7 +75,7 @@
                                 <!-- <td> link_to_route('client_show', $client->name, $client->id) </a></td> -->
                                 <td>{{ $i++ }}</td>
                                 <td>{{ link_to_route('certificates.show', $cert->cert_no, $cert->id) }}</a></td>
-                                <td><a href="{{ URL::route('clients.show' , $cert->client_id) }}" >{{ $cert->client->name }}</td></a>
+                                <td>{{ $cert->client->name }}</td>
                                 <td>{{ $cert->date->format('d/m/Y') }}</a></td>
                                 <td>{{ sanitizeNextInspectionDate($cert->next_inspection) }}</td>
                                 <td>{{ statusForNextInspectionDate($cert->next_inspection, $cert->status) }} </td>

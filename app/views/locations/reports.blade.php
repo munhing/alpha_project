@@ -8,7 +8,7 @@
 @section('content')
 
     <section class="content-header">
-        <h1>All Reports <small>List</small>
+        <h1>All Reports for {{$location->location}}<small>List</small>
             <a href="{{ URL::route('reports.create') }}" class="btn btn-sm pull-right btn-default">
                 <i class='fa fa-plus fa-fw'></i>New Report
             </a>
@@ -16,6 +16,12 @@
         <ol class="breadcrumb">
             <li>
                 <a href="{{ route('home') }}"><i class='fa fa-home fa-fw'></i>Home</a>
+            </li>
+            <li>
+                <a href="{{ route('locations') }}"></i>Locations</a>
+            </li>            
+            <li>
+                <a href="{{ route('locations.show', $location->id) }}"></i>{{$location->location}}</a>
             </li>
              <li class="active">Reports</li>       
         </ol>
@@ -78,7 +84,7 @@
                                 <td>{{ $i++ }}</td>
                         		<td>{{ link_to_route('reports.show', $report->report_no, $report->id) }}</a></td>
                                 <td>{{ $report->type }}</td>
-                        		<td><a href="{{ URL::route('clients.show' , $report->client_id) }}" >{{ $report->client->name }}</td></a>
+                        		<td>{{ $report->client->name }}</td>
                         		<td>{{ $report->date->format('d/m/Y') }}</td>
                         		<td>{{ sanitizeNextInspectionDate($report->next_inspection) }}</td>
                                 <td>{{ statusForNextInspectionDate($report->next_inspection, $report->status) }} </td>

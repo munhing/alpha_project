@@ -1,9 +1,10 @@
 <?php
 
-use Alpha\Repositories\ReportsRepository;
 use Alpha\Repositories\CertificatesRepository;
-use Alpha\Repositories\UsersRepository;
 use Alpha\Repositories\ItemsRepository;
+use Alpha\Repositories\LocationsRepository;
+use Alpha\Repositories\ReportsRepository;
+use Alpha\Repositories\UsersRepository;
 
 class ClientViewController extends \BaseController {
 
@@ -11,13 +12,15 @@ class ClientViewController extends \BaseController {
 	protected $certificatesRepo;
 	protected $itemsRepo;
 	protected $usersRepo;
+	protected $locationsRepositories;
 
-	public function __construct(ReportsRepository $reportsRepo, CertificatesRepository $certificatesRepo, UsersRepository $usersRepo, ItemsRepository $itemsRepo)
+	public function __construct(ReportsRepository $reportsRepo, CertificatesRepository $certificatesRepo, UsersRepository $usersRepo, ItemsRepository $itemsRepo, LocationsRepository $locationsRepositories)
 	{
 		$this->reportsRepo = $reportsRepo;
 		$this->certificatesRepo = $certificatesRepo;
 		$this->itemsRepo = $itemsRepo;
 		$this->usersRepo = $usersRepo;
+		$this->locationsRepositories = $locationsRepositories;
 	}
 
 	/**
@@ -246,11 +249,33 @@ class ClientViewController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function locations()
 	{
-		//
+		$clientList = $this->getClientList();
+		$locations = $this->locationsRepositories->getAllForClient($clientList);
+		return View::make('clientviews/locations', compact('locations'));
 	}
 
+	public function locations_reports($location_id)
+	{
+		$location = $this->locationsRepositories->getById($location_id);
+
+		return View::make('clientviews/locations_reports', compact('location', 'reports'));
+	}
+
+	public function locations_certificates($location_id)
+	{
+		$location = $this->locationsRepositories->getById($location_id);
+
+		return View::make('clientviews/locations_certificates', compact('location'));
+	}	
+
+	public function locations_items($location_id)
+	{
+		$location = $this->locationsRepositories->getById($location_id);
+
+		return View::make('clientviews/locations_items', compact('location'));
+	}
 
 	/**
 	 * Remove the specified resource from storage.

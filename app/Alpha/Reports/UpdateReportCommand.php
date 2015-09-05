@@ -11,8 +11,9 @@ class UpdateReportCommand {
 	public $next_inspection;
 	public $file;
 	public $filename;
+	public $location_id;
 
-    public function __construct($id, $report_no, $type, $client_id, $validity, $date, $file, $filename)
+    public function __construct($id, $report_no, $type, $client_id, $validity, $date, $file, $filename, $location_id)
     {
 
 		$this->id 			= $id;
@@ -24,6 +25,7 @@ class UpdateReportCommand {
 		$this->next_inspection = getNextInspection($date, $validity);
 		$this->file 		= $file;
 		$this->filename		= $filename;
+		$this->location_id = $location_id;
     }
 
 }

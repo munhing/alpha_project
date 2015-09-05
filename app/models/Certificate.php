@@ -15,7 +15,7 @@ class Certificate extends Eloquent implements SearchInterface{
 	 */
 	protected $table = 'certificates';
 
-	protected $fillable = array('cert_no', 'certificate_type_id', 'client_id', 'validity', 'date', 'next_inspection', 'filename');
+	protected $fillable = array('cert_no', 'certificate_type_id', 'client_id', 'location_id', 'validity', 'date', 'next_inspection', 'filename');
 
 	protected $dates = array('date', 'next_inspection');
 
@@ -34,6 +34,11 @@ class Certificate extends Eloquent implements SearchInterface{
 		return $this->belongsTo('Client');
 	}
 
+	public function location()
+	{
+		return $this->belongsTo('Location');
+	}
+
 	public function certificateType()
 	{
 		return $this->belongsTo('CertificateType');
@@ -48,13 +53,14 @@ class Certificate extends Eloquent implements SearchInterface{
 		return $certificate;
 	}	
 
-	public static function edit($id, $cert_no, $certificate_type_id, $client_id, $validity, $date, $next_inspection, $filename)
+	public static function edit($id, $cert_no, $certificate_type_id, $client_id, $location_id, $validity, $date, $next_inspection, $filename)
 	{
 		$certificate = static::find($id);
 
 		$certificate->cert_no 			 	= $cert_no;
 		$certificate->certificate_type_id 	= $certificate_type_id;
 		$certificate->client_id 			= $client_id;
+		$certificate->location_id 			= $location_id;
 		$certificate->validity 			 	= $validity;
 		$certificate->date 				 	= $date;
 		$certificate->next_inspection 	 	= $next_inspection;

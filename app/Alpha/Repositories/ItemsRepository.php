@@ -26,6 +26,17 @@ class ItemsRepository
 		       ->paginate($row);	
 	}
 
+	public function getAllByLocationWithPagination($location_id, $row = 20)
+	{
+		return Item::with('itemType', 'client')
+				->select('items.*', 'clients.name', 'item_type.type')
+		       ->join('clients', 'items.client_id', '=', 'clients.id')
+		       ->join('item_type', 'items.item_type_id', '=', 'item_type.id')
+		       ->where('location_id', $location_id)
+		       ->orderBy('items.serial_no')
+		       ->paginate($row);	
+	}
+
 	public function save(Item $item)
 	{
 		return $item->save();

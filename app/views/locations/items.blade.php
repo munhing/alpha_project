@@ -8,7 +8,7 @@
 @section('content')
 
     <section class="content-header">
-        <h1>All Items <small>List</small>
+        <h1>All Items for {{$location->location}}<small>List</small>
             <a href="{{ URL::route('items.create') }}" class="btn btn-sm pull-right btn-default">
                 <i class='fa fa-plus fa-fw'></i> New Item
             </a>
@@ -17,6 +17,12 @@
             <li>
                 <a href="{{ route('home') }}"><i class='fa fa-home fa-fw'></i>Home</a>
             </li>
+            <li>
+                <a href="{{ route('locations') }}"></i>Locations</a>
+            </li>             
+            <li>
+                <a href="{{ route('locations.show', $location->id) }}">{{$location->location}}</a>
+            </li>            
              <li class="active">Items</li>       
         </ol>        
     </section>
@@ -63,7 +69,7 @@
                         		<!-- <td> link_to_route('client_show', $client->name, $client->id) </a></td> -->
                         		<td>{{ link_to_route('items.show', $item->serial_no, $item->id) }}</td>
                                 <td>{{ $item->itemType->type }}</td>
-                                <td><a href="{{ URL::route('clients.show' , $item->client_id) }}" >{{ $item->client->name }}</td></a>
+                                <td>{{ $item->client->name }}</td>
                         		<td>
                                     <a href="{{ URL::route('items.edit' , $item->id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
 								</td>

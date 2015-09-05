@@ -1,20 +1,17 @@
 <?php
-use Alpha\Repositories\CertificatesRepository;
-use Alpha\Repositories\CertificateTypesRepository;
-use Alpha\Repositories\ClientsRepository;
-use Alpha\Repositories\ItemsRepository;
-use Alpha\Repositories\ItemTypesRepository;
-
-use Alpha\Forms\CertificateForm;
-use Alpha\Forms\CertificateAddItemsForm;
-use Alpha\Forms\ItemForm;
-
-use Alpha\Forms\FormValidationException;
-
 use Alpha\Certificates\RegisterCertificateCommand;
 use Alpha\Certificates\UpdateCertificateCommand;
-
+use Alpha\Forms\CertificateAddItemsForm;
+use Alpha\Forms\CertificateForm;
+use Alpha\Forms\FormValidationException;
+use Alpha\Forms\ItemForm;
 use Alpha\Items\RegisterItemCommand;
+use Alpha\Repositories\CertificateTypesRepository;
+use Alpha\Repositories\CertificatesRepository;
+use Alpha\Repositories\ClientsRepository;
+use Alpha\Repositories\ItemTypesRepository;
+use Alpha\Repositories\ItemsRepository;
+use Alpha\Repositories\LocationsRepository;
 
 class CertificatesController extends \BaseController {
 
@@ -27,8 +24,9 @@ class CertificatesController extends \BaseController {
 	protected $clientsRepository;
 	protected $itemsRepository;
 	protected $itemTypesRepository;
+	protected $locationsRepository;
 
-	public function __construct(CertificatesRepository $certificatesRepository, CertificateTypesRepository $certificateTypesRepository, ClientsRepository $clientsRepository, ItemsRepository $itemsRepository, ItemTypesRepository $itemTypesRepository, CertificateForm $certificateForm, CertificateAddItemsForm $certificateAddItemsForm, ItemForm $itemForm)
+	public function __construct(CertificatesRepository $certificatesRepository, CertificateTypesRepository $certificateTypesRepository, ClientsRepository $clientsRepository, ItemsRepository $itemsRepository, ItemTypesRepository $itemTypesRepository, CertificateForm $certificateForm, CertificateAddItemsForm $certificateAddItemsForm, ItemForm $itemForm, LocationsRepository $locationsRepository)
 	{
 		//parent::__construct();
 		$this->certificateForm = $certificateForm;
@@ -40,6 +38,7 @@ class CertificatesController extends \BaseController {
 		$this->clientsRepository = $clientsRepository;
 		$this->itemsRepository = $itemsRepository;
 		$this->itemTypesRepository = $itemTypesRepository;
+		$this->locationsRepository = $locationsRepository;
 	}
 
 	/**
@@ -179,7 +178,11 @@ class CertificatesController extends \BaseController {
 		$certificateTypes = $this->certificateTypesRepository->getAll()->lists('type', 'id');
 		$clients = $this->clientsRepository->getAllForSelectList();
 
-		return View::make('certificates/edit', compact('certificate', 'clients', 'certificateTypes'));
+		$locations = $this->locationsRepository->getAllForSelectList($certificate->client_id);
+
+		$locations->add(['id' => 0, 'text' => '']);
+
+		return View::make('certificates/edit', compact('certificate', 'clients', 'certificateTypes', 'locations'));
 	}
 
 

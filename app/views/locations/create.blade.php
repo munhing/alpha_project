@@ -15,7 +15,7 @@
             <li>
                 <a href="{{ route('home') }}"><i class='fa fa-home fa-fw'></i>Home</a>
             </li>
-            <li>{{ link_to_route('locations', 'Location') }}</li>
+            <li>{{ link_to_route('locations', 'Locations') }}</li>
              <li class="active">New</li>       
         </ol>     	
     </section>

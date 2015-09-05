@@ -28,6 +28,15 @@ class ReportsRepository
 		       ->paginate($row);
 	}
 
+	public function getAllByLocationWithPagination($location_id, $row = 20)
+	{
+		return Report::with('client')->selectRaw("reports.*, clients.name, (`next_inspection`) > (NOW())  AS `status`")
+		       ->join('clients', 'reports.client_id', '=', 'clients.id')
+		       ->where('location_id', $location_id)
+		       ->orderBy('reports.report_no')
+		       ->paginate($row);
+	}
+
 	public function save(Report $report)
 	{
 		return $report->save();
@@ -35,7 +44,7 @@ class ReportsRepository
 
 	public function getById($id)
 	{
-		return Report::with('client', 'items', 'certificates')->find($id);
+		return Report::with('client', 'items', 'certificates', 'location')->find($id);
 	}
 
 	public function getByIdWithDetails($id)
@@ -249,7 +258,6 @@ class ReportsRepository
 		return Report::with('client', 'reportType')->selectRaw("reports.*, (`next_inspection`) > (NOW())  AS `status`")
 						->whereIn('client_id', $clientList)
 						->get();
-
 	}	
 	
 	public function getByIdWithDetailsForClient($clientList)
@@ -257,7 +265,6 @@ class ReportsRepository
 		return Report::with('client', 'reportType')->selectRaw("reports.*, (`next_inspection`) > (NOW())  AS `status`")
 						->whereIn('client_id', $clientList)
 						->get();
-
 	}	
 	
 	public function getSearchResultsForClient($search, $clientList)
