@@ -27,11 +27,13 @@ use Carbon\Carbon;
 
 Route::get('/test', function(){
 
-	$item = Item::find(110);
-	
-	$item->delete();
+	// dd(getenv('APP_ENV') ?: 'LOCAL');
 
-	dd($item);
+	// $item = Item::find(110);
+	
+	// $item->delete();
+
+	// dd($item);
 	//var_dump(Auth::user()->roles->first()->name);
 
 	// $user = User::find(1);
