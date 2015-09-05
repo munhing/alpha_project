@@ -59,6 +59,13 @@
 		</div>
 
 		<div class="form-group">
+			{{ Form::label('location_id', 'Location:', ['class' =>'col-sm-2 control-label']) }}
+			<div class="col-sm-6">
+				{{ Form::text('location_id', null,['id' => 'location_id', 'class' => 'form-control', 'autocomplete' => 'off']) }}
+			</div>
+		</div>
+
+		<div class="form-group">
 			{{ Form::label('date', 'Date:', ['class' =>'col-sm-2 control-label']) }}
 			<div class="col-sm-3">
 				{{ Form::text('date', $report->date->format('d/m/Y'), ['class' =>'form-control', 'placeholder' => 'Date']) }}
@@ -122,6 +129,13 @@
 			});
 
 			$("#client_id").select2("val", "{{ $report->client_id }}" );
+
+			$("#location_id").select2({
+				placeholder: 'Select Location',
+				data: {{ $locations->toJson() }}
+			});
+
+			$("#location_id").select2("val", "{{ $report->location_id }}" );
 
         });
     </script>

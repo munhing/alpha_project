@@ -54,6 +54,13 @@
 		</div>
 
 		<div class="form-group">
+			{{ Form::label('location_id', 'Location:', ['class' =>'col-sm-2 control-label']) }}
+			<div class="col-sm-6">
+				{{ Form::text('location_id', null,['id' => 'location_id', 'class' => 'form-control', 'autocomplete' => 'off']) }}
+			</div>
+		</div>
+
+		<div class="form-group">
 			{{ Form::label('description', 'Description:', ['class' =>'col-sm-2 control-label']) }}
 			<div class="col-sm-6">
 				{{ Form::textarea('description', $item->description, ['class' =>'form-control', 'placeholder' => 'Description']) }}
@@ -98,6 +105,12 @@
 
 			$("#client_id").select2("val", "{{ $item->client_id }}" );
 
+			$("#location_id").select2({
+				placeholder: 'Select Location',
+				data: {{ $locations->toJson() }}
+			});
+
+			$("#location_id").select2("val", "{{ $item->location_id }}" );
         });
     </script>
 

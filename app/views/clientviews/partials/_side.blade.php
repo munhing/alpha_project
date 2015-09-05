@@ -18,6 +18,9 @@
                         <li class="{{ Request::is('items') ? 'active' : '' }}">
                             <a href="{{ URL::route('client_items') }}"><i class="fa fa-gears fa-fw"></i> Items<span class="fa arrow"></span></a>
                         </li>                                              
+                        <li class="{{ Request::is('locations') ? 'active' : '' }}">
+                            <a href="{{ URL::route('client_locations') }}"><i class="fa fa-location-arrow fa-fw"></i> Locations<span class="fa arrow"></span></a>
+                        </li>                         
                     </ul>
                 </section>
                 <!-- /.sidebar -->

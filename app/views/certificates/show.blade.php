@@ -74,7 +74,13 @@
                             @else
                                 <small class="label label-success"><i class="fa fa-clock-o"></i> Expiring {{ $certificate->next_inspection->diffForHumans() }}</small>
                             @endif                                                  
-                        </dd>                                                 
+                        </dd>  
+                        <dt>Location:</dt>
+                        <dd>
+                            @if($certificate->location_id != 0)
+                                <a href="{{ route('locations') }}">{{ $certificate->location->location }}</a>
+                            @endif
+                        </dd>                                                                       
                     </dl>                       
                 </div>
             </div>

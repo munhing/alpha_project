@@ -6,6 +6,7 @@ use Alpha\Repositories\ItemTypesRepository;
 use Alpha\Repositories\ItemsRepository;
 use Alpha\Repositories\CertificatesRepository;
 use Alpha\Repositories\CertificateTypesRepository;
+use Alpha\Repositories\LocationsRepository;
 
 use Alpha\Forms\ReportForm;
 use Alpha\Forms\ReportTypeForm;
@@ -43,9 +44,27 @@ class ReportsController extends \BaseController {
 	protected $reportCreateCertificateForm;
 	protected $certificateForm;
 
-	protected $itemForm;	
+	protected $itemForm;
+	protected $locationsRepository;	
 
-	public function __construct(ReportsRepository $reportsRepository, ReportTypesRepository $reportTypesRepository, ClientsRepository $clientsRepository, ItemTypesRepository $itemTypesRepository, ItemsRepository $itemsRepository, CertificatesRepository $certificatesRepository, CertificateTypesRepository $certificateTypesRepository,ReportForm $reportForm, ReportTypeForm $reportTypeForm, ReportAddItemsForm $reportAddItemsForm, ReportCreateItemForm $reportCreateItemForm, ItemForm $itemForm,ReportAddCertificatesForm $reportAddCertificatesForm, ReportCreateCertificateForm $reportCreateCertificateForm, CertificateForm $certificateForm)
+	public function __construct(
+		ReportsRepository $reportsRepository, 
+		ReportTypesRepository $reportTypesRepository, 
+		ClientsRepository $clientsRepository, 
+		ItemTypesRepository $itemTypesRepository, 
+		ItemsRepository $itemsRepository, 
+		CertificatesRepository $certificatesRepository, 
+		CertificateTypesRepository $certificateTypesRepository,
+		ReportForm $reportForm, 
+		ReportTypeForm $reportTypeForm, 
+		ReportAddItemsForm $reportAddItemsForm, 
+		ReportCreateItemForm $reportCreateItemForm, 
+		ItemForm $itemForm,
+		ReportAddCertificatesForm $reportAddCertificatesForm, 
+		ReportCreateCertificateForm $reportCreateCertificateForm, 
+		CertificateForm $certificateForm,
+		LocationsRepository $locationsRepository
+	)
 	{
 		$this->reportsRepository = $reportsRepository;
 		$this->reportTypesRepository = $reportTypesRepository;
@@ -64,6 +83,7 @@ class ReportsController extends \BaseController {
 		$this->certificateForm = $certificateForm;
 
 		$this->itemForm = $itemForm;
+		$this->locationsRepository = $locationsRepository;
 	}
 
 	/**
@@ -173,9 +193,15 @@ class ReportsController extends \BaseController {
 
 		$clients = Client::selectRaw("id, name AS text")->orderBy('text')->get();
 
+		$locations = $this->locationsRepository->getAllForSelectList($report->client_id);
+
+		$locations->add(['id' => 0, 'text' => '']);
+
+		// dd($locations->toArray());
+
 		//dd($report->date->format('d/m/Y'));
 
-		return View::make('reports/edit', compact('report', 'types', 'clients'));
+		return View::make('reports/edit', compact('report', 'types', 'clients', 'locations'));
 	}
 
 

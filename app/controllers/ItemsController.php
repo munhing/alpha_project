@@ -1,17 +1,16 @@
 <?php
 
-use Alpha\Repositories\ItemsRepository;
-use Alpha\Repositories\ItemTypesRepository;
-use Alpha\Repositories\ClientsRepository;
-
+use Alpha\Forms\FormValidationException;
 use Alpha\Forms\ItemForm;
 use Alpha\Forms\ItemTypeForm;
-use Alpha\Forms\FormValidationException;
-
 use Alpha\Items\RegisterItemCommand;
-use Alpha\Items\UpdateItemCommand;
 use Alpha\Items\RegisterItemTypeCommand;
+use Alpha\Items\UpdateItemCommand;
 use Alpha\Items\UpdateItemTypeCommand;
+use Alpha\Repositories\ClientsRepository;
+use Alpha\Repositories\ItemTypesRepository;
+use Alpha\Repositories\ItemsRepository;
+use Alpha\Repositories\LocationsRepository;
 
 class ItemsController extends \BaseController {
 
@@ -21,8 +20,9 @@ class ItemsController extends \BaseController {
 
 	protected $itemForm;
 	protected $itemTypeForm;
+	protected $locationsRepository;
 
-	public function __construct(ItemsRepository $itemsRepository, ItemTypesRepository $itemTypesRepository, ClientsRepository $clientsRepository,ItemForm $itemForm, ItemTypeForm $itemTypeForm)
+	public function __construct(ItemsRepository $itemsRepository, ItemTypesRepository $itemTypesRepository, ClientsRepository $clientsRepository,ItemForm $itemForm, ItemTypeForm $itemTypeForm, LocationsRepository $locationsRepository)
 	{
 		$this->itemsRepository = $itemsRepository;
 		$this->itemTypesRepository = $itemTypesRepository;
@@ -30,6 +30,7 @@ class ItemsController extends \BaseController {
 
 		$this->itemForm = $itemForm;
 		$this->itemTypeForm = $itemTypeForm;
+		$this->locationsRepository = $locationsRepository;
 	}
 
 	/**
@@ -121,7 +122,11 @@ class ItemsController extends \BaseController {
 		$itemTypes = $this->itemTypesRepository->getAllForSelectList();
 		$clients = $this->clientsRepository->getAllForSelectList();
 
-		return View::make('items/edit', compact('item', 'itemTypes', 'clients'));
+		$locations = $this->locationsRepository->getAllForSelectList($item->client_id);
+
+		$locations->add(['id' => 0, 'text' => '']);
+
+		return View::make('items/edit', compact('item', 'itemTypes', 'clients', 'locations'));
 	}
 
 

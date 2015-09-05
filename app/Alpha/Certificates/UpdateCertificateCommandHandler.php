@@ -28,6 +28,7 @@ class UpdateCertificateCommandHandler implements CommandHandler {
 			$command->cert_no,
 			$command->certificate_type_id,
 			$command->client_id,
+			$command->location_id,
 			$command->validity,
 			$command->date,
 			$command->next_inspection,

@@ -587,7 +587,21 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth | client'), function()
 		'as' => 'locations.delete',
 		'uses' => 'LocationsController@destroy'
 	]);	
-	
+
+	Route::get('/locations/{id}/reports', [
+		'as' => 'locations.reports.list',
+		'uses' => 'LocationsController@reports'
+	]);
+
+	Route::get('/locations/{id}/certificates', [
+		'as' => 'locations.certificates.list',
+		'uses' => 'LocationsController@certificates'
+	]);
+
+	Route::get('/locations/{id}/items', [
+		'as' => 'locations.items.list',
+		'uses' => 'LocationsController@items'
+	]);	
 	/*
 	|--------------------------------------------------------------------------
 	| Users
@@ -795,4 +809,25 @@ Route::group(array('before' => 'auth'), function() {
 		'as' => 'client_search', 
 		'uses' => 'ClientViewController@search'
 	]);	
+
+	Route::any('/locations', [
+		'as' => 'client_locations', 
+		'uses' => 'ClientViewController@locations'
+	]);	
+
+	Route::any('/locations/{location_id}/reports', [
+		'as' => 'client_location_reports_list', 
+		'uses' => 'ClientViewController@locations_reports'
+	]);
+
+	Route::any('/locations/{location_id}/certificates', [
+		'as' => 'client_location_certificates_list', 
+		'uses' => 'ClientViewController@locations_certificates'
+	]);	
+
+	Route::any('/locations/{location_id}/items', [
+		'as' => 'client_location_items_list', 
+		'uses' => 'ClientViewController@locations_items'
+	]);
+
 });

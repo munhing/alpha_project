@@ -21,7 +21,12 @@ class Item extends Eloquent implements SearchInterface{
 	{
 		return $this->belongsTo('Client');
 	}
-	
+
+	public function location()
+	{
+		return $this->belongsTo('Location');
+	}
+
 	public function itemType()
 	{
 		return $this->belongsTo('ItemType');
@@ -46,13 +51,14 @@ class Item extends Eloquent implements SearchInterface{
 		return $item;
 	}		
 
-	public static function edit($id, $serial_no, $item_type_id, $client_id, $description)
+	public static function edit($id, $serial_no, $item_type_id, $client_id, $location_id, $description)
 	{
 		$item = static::find($id);
 
 		$item->serial_no 	= $serial_no;
 		$item->item_type_id = $item_type_id;
 		$item->client_id 	= $client_id;
+		$item->location_id 	= $location_id;
 		$item->description 	= $description;
 
 		$item->raise(new ItemWasUpdated($item));

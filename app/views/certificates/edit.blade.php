@@ -47,6 +47,13 @@
 		</div>
 
 		<div class="form-group">
+			{{ Form::label('location_id', 'Location:', ['class' =>'col-sm-2 control-label']) }}
+			<div class="col-sm-6">
+				{{ Form::text('location_id', null,['id' => 'location_id', 'class' => 'form-control', 'autocomplete' => 'off']) }}
+			</div>
+		</div>
+
+		<div class="form-group">
 			{{ Form::label('certificate_type_id', 'Type:', ['class' =>'col-sm-2 control-label']) }}
 			<div class="col-sm-6">
 				{{ Form::select('certificate_type_id', $certificateTypes, $certificate->certificate_type_id,['id' => 'certificate_type_id', 'class' => 'form-control', 'autocomplete' => 'off']) }}
@@ -121,6 +128,14 @@
 			});
 
 			$("#client_id").select2("val", "{{ $certificate->client_id }}" );
+
+			$("#location_id").select2({
+				placeholder: 'Select Location',
+				data: {{ $locations->toJson() }}
+			});
+
+			$("#location_id").select2("val", "{{ $certificate->location_id }}" );
+						
         });
     </script>
 

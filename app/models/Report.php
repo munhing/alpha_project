@@ -24,6 +24,11 @@ class Report extends Eloquent implements SearchInterface{
 		return $this->belongsTo('Client');
 	}
 
+	public function location()
+	{
+		return $this->belongsTo('Location');
+	}
+
 	public function items()
 	{
 		return $this->belongsToMany('Item', 'item_report');
@@ -48,13 +53,14 @@ class Report extends Eloquent implements SearchInterface{
 		return $report;
 	}		
 
-	public static function edit($id, $report_no, $type, $client_id, $validity, $date, $next_inspection, $filename)
+	public static function edit($id, $report_no, $type, $client_id, $location_id, $validity, $date, $next_inspection, $filename)
 	{
 		$report = static::find($id);
 
 		$report->report_no 			= $report_no;
 		$report->type 				= $type;
 		$report->client_id 			= $client_id;
+		$report->location_id		= $location_id;
 		$report->validity 			= $validity;
 		$report->date 				= $date;
 		$report->next_inspection 	= $next_inspection;
