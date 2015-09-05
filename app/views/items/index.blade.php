@@ -63,7 +63,7 @@
                         		<!-- <td> link_to_route('client_show', $client->name, $client->id) </a></td> -->
                         		<td>{{ link_to_route('items.show', $item->serial_no, $item->id) }}</td>
                                 <td>{{ $item->itemType->type }}</td>
-                                <td>{{ $item->client->name }}</td>
+                                <td><a href="{{ URL::route('clients.show' , $item->client_id) }}" >{{ $item->client->name }}</td></a>
                         		<td>
                                     <a href="{{ URL::route('items.edit' , $item->id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
 								</td>

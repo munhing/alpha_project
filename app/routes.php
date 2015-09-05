@@ -573,6 +573,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth | client'), function()
 		'uses' => 'LocationsController@store'
 	]);
 
+    Route::get('/locations/{id}/show', [
+		'as' => 'locations.show', 
+		'uses' => 'LocationsController@show'
+	]);
+
     Route::get('/locations/{id}/edit', [
 		'as' => 'locations.edit', 
 		'uses' => 'LocationsController@edit'

@@ -18,7 +18,10 @@
                 <a href="{{ route('home') }}"><i class='fa fa-home fa-fw'></i>Home</a>
             </li>
             <li>
-                <a href="{{ route('locations') }}">{{$location->location}}</a>
+                <a href="{{ route('locations') }}"></i>Locations</a>
+            </li>             
+            <li>
+                <a href="{{ route('locations.show', $location->id) }}">{{$location->location}}</a>
             </li>            
              <li class="active">Items</li>       
         </ol>        

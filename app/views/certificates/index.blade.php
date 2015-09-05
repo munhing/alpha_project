@@ -69,7 +69,7 @@
                                 <!-- <td> link_to_route('client_show', $client->name, $client->id) </a></td> -->
                                 <td>{{ $i++ }}</td>
                                 <td>{{ link_to_route('certificates.show', $cert->cert_no, $cert->id) }}</a></td>
-                                <td>{{ $cert->client->name }}</td>
+                                <td><a href="{{ URL::route('clients.show' , $cert->client_id) }}" >{{ $cert->client->name }}</td></a>
                                 <td>{{ $cert->date->format('d/m/Y') }}</a></td>
                                 <td>{{ sanitizeNextInspectionDate($cert->next_inspection) }}</td>
                                 <td>{{ statusForNextInspectionDate($cert->next_inspection, $cert->status) }} </td>

@@ -87,9 +87,11 @@ class LocationsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($location_id)
 	{
-		//
+		$location = $this->locationsRepository->getById($location_id);
+
+		return View::make('locations/show', compact('location'));
 	}
 
 	/**

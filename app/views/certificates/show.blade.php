@@ -43,7 +43,9 @@
                 <!-- /.panel-heading -->
                 <div class="box-body">
 
-                    <dl class="dl-horizontal"> 
+                    <dl class="dl-horizontal">
+                        <dt>Client:</dt>
+                        <dd><a href="{{ URL::route('clients.show' , $certificate->client_id) }}">{{ $certificate->client->name }}</a></dd>
                         <dt>Certificate Type:</dt>
                         <dd>
                             @if($certificate->certificate_type_id == 0)

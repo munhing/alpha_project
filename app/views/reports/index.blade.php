@@ -78,7 +78,7 @@
                                 <td>{{ $i++ }}</td>
                         		<td>{{ link_to_route('reports.show', $report->report_no, $report->id) }}</a></td>
                                 <td>{{ $report->type }}</td>
-                        		<td>{{ $report->client->name }}</td>
+                        		<td><a href="{{ URL::route('clients.show' , $report->client_id) }}" >{{ $report->client->name }}</td></a>
                         		<td>{{ $report->date->format('d/m/Y') }}</td>
                         		<td>{{ sanitizeNextInspectionDate($report->next_inspection) }}</td>
                                 <td>{{ statusForNextInspectionDate($report->next_inspection, $report->status) }} </td>

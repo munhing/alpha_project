@@ -42,7 +42,9 @@
                     <!-- /.panel-heading -->
                     <div class="box-body">
 
-                        <dl class="dl-horizontal">                   
+                        <dl class="dl-horizontal">  
+                            <dt>Client:</dt>
+                            <dd><a href="{{ URL::route('clients.show' , $item->client_id) }}">{{ $item->client->name }}</a></dd>                 
                             <dt>Type:</dt>
                             <dd>{{ $item->itemType->type }}</dd>
                             <dt>Description:</dt>

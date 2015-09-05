@@ -40,7 +40,7 @@
                             <tr>
                                 <!-- <td> link_to_route('client_show', $client->name, $client->id) </a></td> -->
                                 <td>
-                                    {{ $location->location }}
+                                    <a href="{{ URL::route('locations.show', $location->id)}}">{{ $location->location }}</a>
                                     <span class="pull-right">
                                         @if($location->reports()->count() > 0)
                                             <a href="{{ URL::route('locations.reports.list', $location->id)}}"> 
