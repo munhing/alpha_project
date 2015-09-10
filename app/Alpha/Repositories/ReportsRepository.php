@@ -44,7 +44,9 @@ class ReportsRepository
 
 	public function getById($id)
 	{
-		return Report::with('client', 'items', 'certificates', 'location')->find($id);
+		return Report::with('client', 'items', 'certificates', 'location')
+                ->selectRaw("reports.*, (`next_inspection`) > (NOW())  AS `status`")
+                ->find($id);
 	}
 
 	public function getByIdWithDetails($id)

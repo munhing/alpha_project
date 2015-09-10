@@ -22,7 +22,18 @@ class LocationsRepository
 
 	public function getById($id)
 	{
-		return Location::with('client', 'reports', 'certificates', 'items')->find($id);
+		// return Location::with('client', 'reports', 'certificates', 'items')->find($id);
+        
+        return Location::with([
+                'client', 
+                'reports' => function($query){
+                    $query->selectRaw("reports.*, (`next_inspection`) > (NOW())  AS `status`");
+                }, 
+                'certificates' => function($query){
+                    $query->selectRaw("certificates.*, (`next_inspection`) > (NOW())  AS `status`");
+                },  
+                'items'])
+            ->find($id);
 	}
 
 	public function save(Location $location)

@@ -27,6 +27,12 @@ use Carbon\Carbon;
 
 Route::get('/test', function(){
 
+    $rptRepo = new Alpha\Repositories\ReportsRepository;
+    
+    $rpt = $rptRepo->getById(3553);
+    
+    dd($rpt->status);
+
 	// dd(getenv('APP_ENV') ?: 'LOCAL');
 
 	// $item = Item::find(110);
