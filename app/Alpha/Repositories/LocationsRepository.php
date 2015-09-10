@@ -1,4 +1,6 @@
-<?php namespace Alpha\Repositories;
+<?php 
+
+namespace Alpha\Repositories;
 
 use Location;
 
